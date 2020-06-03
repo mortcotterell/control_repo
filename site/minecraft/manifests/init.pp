@@ -22,10 +22,10 @@ file {$install_dir:
     content = epp('minecraft/minecraft.service', {
       install_dir => $install_dir,
     }),
-    require => [Package['java'],File["${install_dir}/eula.txt"],File['/etc/systemd/system/minecraft.service']],
-     }
+    }
   service {'minecraft': 
     ensure => running,
     enable => true,
+    require => [Package['java'],File["${install_dir}/eula.txt"],File['/etc/systemd/system/minecraft.service']],
   }
 }
