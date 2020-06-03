@@ -19,10 +19,12 @@ file {$install_dir
     }
   file {'/etc/systemd/system/minecraft.service':
     ensure => file,
-    source => 'puppet:///modules/minecraft/minecraft.service',
+    content = epp('minecraft/minecraft.service', {
+      install_dir => $install_dir,
+    })
     require => [Package['java'],File["${install_dir}/eula.txt"],File['/etc/systemd/system/minecraft.service']],
      }
-  service {'minecraft':
+  service {'minecraft': 
     ensure => running,
     enable => true,
   }
