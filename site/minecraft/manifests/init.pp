@@ -19,7 +19,7 @@ file {$install_dir:
     }
   file {'/etc/systemd/system/minecraft.service':
     ensure => file,
-    content = epp('minecraft/minecraft.service', {
+    content => epp('minecraft/minecraft.service', {
       install_dir => $install_dir,
     })
     }
